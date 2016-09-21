@@ -37,7 +37,7 @@ class Frog{
     }
     public void setPosition(int positionX,int positionY){
         positionx=positionX;
-        positiony=positionY
+        positiony=positionY;
         return;
     }
 }
