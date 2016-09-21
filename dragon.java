@@ -23,12 +23,6 @@ public class dragon{
                 lines.add(lines.get((i+1)/2));
             }
         }
-        for(int i=2;i<lines.size();i++){
-            if(lines.get(i)==1){
-            }
-            if(lines.get(i)==0){
-            }
-        }
         return lines;
 
     }
