@@ -17,7 +17,6 @@ public class dragon{
                 if((i/2)%2==0){
                     lines.add(0);
                 }
-
             }
             else{
                 lines.add(lines.get((i+1)/2));
