@@ -34,6 +34,37 @@ public class main extends Application{
         Canvas canvas=new Canvas(width,height);
         root.getChildren().add(canvas);
         GraphicsContext gc=canvas.getGraphicsContext2D();
+        List<String> input=new ArrayList<>();
+        double[] mouseX=new double[1];
+        double[] mouseY=new double[1];
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
+            public void handle(KeyEvent e){
+              String code = e.getCode().toString();
+              // only add once... prevent duplicates
+              if ( !input.contains(code) )
+                  input.add( code );
+            }
+        });
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>(){
+            public void handle(KeyEvent e){
+                String code = e.getCode().toString();
+                input.remove( code );
+            }
+        });
+        mouseX[0]=0;
+        mouseY[0]=0;
+        scene.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent e){
+                double mX=e.getX();
+                double mY=e.getY();
+                mouseX[0]=mX;
+                mouseY[0]=mY;
+            }
+        });
+
+
+
         Frog frog=new Frog(0,0);
         if(opt==0){
             frog.setPosition(width/2-200,500);
@@ -136,6 +167,7 @@ public class main extends Application{
             }.start();
             mainStage.show();
         }else if(opt==1){
+            System.out.println("Press 'e' to zoom into a layer, 'q' to zoom out");
             System.out.println("What colour?");
             System.out.println("[0] Blue");
             System.out.println("[1] Red");
@@ -147,11 +179,31 @@ public class main extends Application{
                 frogs.add(new Frog(i,0));
             }
             final long startNanoTime=System.nanoTime();
+            Image back=new Image("back.png");
             new AnimationTimer(){
+                public int multiplier=100;
+                public double centerX=500;
+                public double centerY=500;
                 public void handle(long currentNanoTime){
+                    if(input.contains("E")){
+                        multiplier++;
+                        gc.drawImage(back,0,0);
+                    }
+                    if(input.contains("Q")){
+                        multiplier--;
+                        gc.drawImage(back,0,0);
+                    }
+                    if(centerX!=500-mouseX[0]){
+                        centerX=500-mouseX[0];
+                        gc.drawImage(back,0,0);
+                    }
+                    if(centerY!=500-mouseY[0]){
+                        centerY=500-mouseY[0];
+                        gc.drawImage(back,0,0);
+                    }
                     for(int i=0;i<frogs.size();i++){
-                        double im=((((double)frogs.get(i).getPositiony()/100)*-1)+5)*(2.0/5.0);
-                        double r=(((double)frogs.get(i).getPositionx()/100)-5)*(2.0/5.0);
+                        double im=((((double)frogs.get(i).getPositiony()/multiplier)*-1)+centerY/multiplier)*((200.0/multiplier)/(500.0/multiplier));
+                        double r=(((double)frogs.get(i).getPositionx()/multiplier)-centerX/multiplier)*((200.0/multiplier)/(500.0/multiplier));
 
                         Complex c = new Complex(r,im);
                         Complex z = new Complex(0,0);
@@ -173,7 +225,6 @@ public class main extends Application{
                         gc.fillOval(frogs.get(i).getPositionx(),frogs.get(i).getPositiony(),1,1);
                         if(frogs.get(i).getPositiony()==height){
                             int x=frogs.get(i).getPositionx();
-                            x++;
                             frogs.get(i).setPosition(x,-1);
                         }
                         frogs.get(i).down();
