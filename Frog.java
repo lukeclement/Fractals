@@ -6,6 +6,7 @@ class Frog{
         positionx=posx;
         positiony=posy;
     }
+    
     public void left(){
         positionx--;
         o="left";
