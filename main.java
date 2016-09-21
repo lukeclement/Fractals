@@ -15,17 +15,17 @@ public class main extends Application{
     public static void main(String[] args){
         launch(args);
     }
-    
+
     public void start(Stage mainStage){
         mainStage.setTitle("Dragon");
         Group root=new Group();
         Scene scene=new Scene(root);
         mainStage.setScene(scene);
-        
+
         Canvas canvas=new Canvas(width,height);
         root.getChildren().add(canvas);
         GraphicsContext gc=canvas.getGraphicsContext2D();
-        
+
         Frog frog=new Frog(width/2-200,500);
         Scanner scan=new Scanner(System.in);
         System.out.println("How many pixles per line?");
@@ -36,10 +36,10 @@ public class main extends Application{
         System.out.println("[1] Yes");
         System.out.println("[0] No");
         int c=scan.nextInt();
-        
-        
+
+
         List<Integer> paces=dragon.lists(b);
-        
+
         final long startNanoTime=System.nanoTime();
         frog.down();
         new AnimationTimer(){
@@ -68,7 +68,7 @@ public class main extends Application{
                             case 6:gc.setFill(Color.rgb(0,0,0));
                                 break;
                         }
-                        
+
                     }
                 }
                 int direction=3;

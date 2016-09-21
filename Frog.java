@@ -8,12 +8,12 @@ class Frog{
         positionx=posx;
         positiony=posy;
     }
-	
+
     public void setCroak(boolean boo){
         croak=boo;
         return;
     }
-    
+
     public void downright(){
         positionx++;
         positiony++;
@@ -60,7 +60,7 @@ class Frog{
     }
     public void jump(){
         System.out.println("Jumped");
-        
+
         return;
     }
     public void brown(){

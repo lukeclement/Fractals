@@ -21,7 +21,7 @@ public class dragon{
         //          System.out.println(i+" IS LEFT");
                     lines.add(0);
                 }
-                
+
             }
             else{
             //    System.out.println(i+" IS COMPUTE "+lines.get((i+1)/2));
@@ -37,6 +37,6 @@ public class dragon{
             }
         }
         return lines;
-        
+
     }
 }
