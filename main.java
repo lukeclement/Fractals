@@ -10,7 +10,7 @@ import javafx.event.*;
 import javafx.scene.paint.*;
 
 public class main extends Application{
-    public int width=1500;
+    public int width=1150;
     public int height=1000;
     public static void main(String[] args){
         launch(args);
@@ -199,35 +199,50 @@ public class main extends Application{
                 public void handle(long currentNanoTime){
                     if(input.contains("E")){
                         multiplier++;
-                        gc.drawImage(back,0,0);
+                        //gc.drawImage(back,0,0);
                     }
                     if(input.contains("Q")){
                         multiplier--;
-                        gc.drawImage(back,0,0);
+                        //gc.drawImage(back,0,0);
                     }
                     if(input.contains("A")){
                         multiplier=multiplier+10;
-                        gc.drawImage(back,0,0);
+                        //gc.drawImage(back,0,0);
                     }
                     if(input.contains("D")){
                         multiplier=multiplier-10;
-                        gc.drawImage(back,0,0);
+                        //gc.drawImage(back,0,0);
                     }
                     if(input.contains("RIGHT")){
                         centerX--;
-                        gc.drawImage(back,0,0);
+                        //gc.drawImage(back,0,0);
                     }
                     if(input.contains("LEFT")){
                         centerX++;
-                        gc.drawImage(back,0,0);
+                        //gc.drawImage(back,0,0);
                     }
                     if(input.contains("UP")){
                         centerY++;
-                        gc.drawImage(back,0,0);
+                        //gc.drawImage(back,0,0);
                     }
                     if(input.contains("DOWN")){
                         centerY--;
-                        gc.drawImage(back,0,0);
+                        //gc.drawImage(back,0,0);
+                    }if(input.contains("RIGHT")&&input.contains("LEFT_SHIFT")){
+                        centerX=centerX-1000;
+                        //gc.drawImage(back,0,0);
+                    }
+                    if(input.contains("LEFT")){
+                        centerX++;
+                        //gc.drawImage(back,0,0);
+                    }
+                    if(input.contains("UP")){
+                        centerY++;
+                        //gc.drawImage(back,0,0);
+                    }
+                    if(input.contains("DOWN")){
+                        centerY--;
+                        //gc.drawImage(back,0,0);
                     }
                     for(int i=0;i<frogs.size();i++){
                         double im=((((double)frogs.get(i).getPositiony()/multiplier)*-1)+centerY/multiplier)*((200.0/multiplier)/(500.0/multiplier));
