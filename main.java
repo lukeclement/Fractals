@@ -67,7 +67,7 @@ public class main extends Application{
 
         Frog frog=new Frog(0,0);
         if(opt==0){
-            frog.setPosition(width/2-200,500);
+            frog.setPosition(width/2-200,400);
             System.out.println("How many pixles per line?");
             int a=scan.nextInt();
             System.out.println("How many lines? (Tip:10000000 is max)");
