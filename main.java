@@ -205,11 +205,11 @@ public class main extends Application{
                         multiplier--;
                         //gc.drawImage(back,0,0);
                     }
-                    if(input.contains("A")){
+                    if(input.contains("C")){
                         multiplier=multiplier+10;
                         //gc.drawImage(back,0,0);
                     }
-                    if(input.contains("D")){
+                    if(input.contains("Z")){
                         multiplier=multiplier-10;
                         //gc.drawImage(back,0,0);
                     }
@@ -228,20 +228,20 @@ public class main extends Application{
                     if(input.contains("DOWN")){
                         centerY--;
                         //gc.drawImage(back,0,0);
-                    }if(input.contains("RIGHT")&&input.contains("LEFT_SHIFT")){
-                        centerX=centerX-1000;
+                    }if(input.contains("D")){
+                        centerX=centerX-100;
                         //gc.drawImage(back,0,0);
                     }
-                    if(input.contains("LEFT")){
-                        centerX++;
+                    if(input.contains("A")){
+                        centerX=centerX+100;
                         //gc.drawImage(back,0,0);
                     }
-                    if(input.contains("UP")){
-                        centerY++;
+                    if(input.contains("W")){
+                        centerY=centerY+100;
                         //gc.drawImage(back,0,0);
                     }
-                    if(input.contains("DOWN")){
-                        centerY--;
+                    if(input.contains("S")){
+                        centerY=centerY-100;
                         //gc.drawImage(back,0,0);
                     }
                     for(int i=0;i<frogs.size();i++){
