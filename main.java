@@ -176,7 +176,19 @@ public class main extends Application{
             int col=scan.nextInt();
             List<Frog> frogs=new ArrayList<>();
             for(int i=0;i<width;i++){
-                frogs.add(new Frog(i,0));
+                for(int j=0;j<height/10;j++){
+                    frogs.add(new Frog(i,j*10));
+                }
+                /*
+                if(i<width){
+                  frogs.add(new Frog(i,0));
+                }else if(i<width*2){
+                  frogs.add(new Frog(i-width,height*1/4));
+                }else if(i<width*3){
+                  frogs.add(new Frog(i-width*2,height*2/4));
+                }else{
+                  frogs.add(new Frog(i-width*3,height*3/4));
+                }*/
             }
             final long startNanoTime=System.nanoTime();
             Image back=new Image("back.png");
@@ -193,6 +205,14 @@ public class main extends Application{
                         multiplier--;
                         gc.drawImage(back,0,0);
                     }
+                    if(input.contains("A")){
+                        multiplier=multiplier+10;
+                        gc.drawImage(back,0,0);
+                    }
+                    if(input.contains("D")){
+                        multiplier=multiplier-10;
+                        gc.drawImage(back,0,0);
+                    }
                     if(input.contains("RIGHT")){
                         centerX--;
                         gc.drawImage(back,0,0);
@@ -202,11 +222,11 @@ public class main extends Application{
                         gc.drawImage(back,0,0);
                     }
                     if(input.contains("UP")){
-                        centerY--;
+                        centerY++;
                         gc.drawImage(back,0,0);
                     }
                     if(input.contains("DOWN")){
-                        centerY++;
+                        centerY--;
                         gc.drawImage(back,0,0);
                     }
                     for(int i=0;i<frogs.size();i++){
