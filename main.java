@@ -193,12 +193,20 @@ public class main extends Application{
                         multiplier--;
                         gc.drawImage(back,0,0);
                     }
-                    if(centerX!=500-mouseX[0]){
-                        centerX=500-mouseX[0];
+                    if(input.contains("RIGHT")){
+                        centerX--;
                         gc.drawImage(back,0,0);
                     }
-                    if(centerY!=500-mouseY[0]){
-                        centerY=500-mouseY[0];
+                    if(input.contains("LEFT")){
+                        centerX++;
+                        gc.drawImage(back,0,0);
+                    }
+                    if(input.contains("UP")){
+                        centerY--;
+                        gc.drawImage(back,0,0);
+                    }
+                    if(input.contains("DOWN")){
+                        centerY++;
                         gc.drawImage(back,0,0);
                     }
                     for(int i=0;i<frogs.size();i++){
