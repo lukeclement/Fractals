@@ -10,7 +10,7 @@ import javafx.event.*;
 import javafx.scene.paint.*;
 
 public class main extends Application{
-    public int width=1000;
+    public int width=1500;
     public int height=1000;
     public static void main(String[] args){
         launch(args);
