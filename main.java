@@ -194,8 +194,8 @@ public class main extends Application{
             Image back=new Image("back.png");
             new AnimationTimer(){
                 public int multiplier=100;
-                public double centerX=500;
-                public double centerY=500;
+                public double centerX=(double)width/2;
+                public double centerY=(double)height/2;
                 public void handle(long currentNanoTime){
                     if(input.contains("E")){
                         multiplier++;
@@ -245,8 +245,8 @@ public class main extends Application{
                         //gc.drawImage(back,0,0);
                     }
                     for(int i=0;i<frogs.size();i++){
-                        double im=((((double)frogs.get(i).getPositiony()/multiplier)*-1)+centerY/multiplier)*((200.0/multiplier)/(500.0/multiplier));
-                        double r=(((double)frogs.get(i).getPositionx()/multiplier)-centerX/multiplier)*((200.0/multiplier)/(500.0/multiplier));
+                        double im=((double)(frogs.get(i).getPositiony()-centerY)/multiplier);
+                        double r=((double)(frogs.get(i).getPositionx()-centerX)/multiplier);
 
                         Complex c = new Complex(r,im);
                         Complex z = new Complex(0,0);
