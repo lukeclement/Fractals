@@ -5,9 +5,13 @@ import javafx.scene.canvas.*;
 import javafx.animation.*;
 import javafx.scene.image.*;
 import java.util.*;
+import java.awt.image.*;
 import javafx.scene.input.*;
 import javafx.event.*;
 import javafx.scene.paint.*;
+import java.io.*;
+import javax.imageio.*;
+import javafx.embed.swing.*;
 
 public class main extends Application{
     public int width=1150;
@@ -166,7 +170,8 @@ public class main extends Application{
                 }
             }.start();
             mainStage.show();
-        }else if(opt==1){
+        }
+        else if(opt==1){
             System.out.println("Press 'e' to zoom into a layer, 'q' to zoom out");
             System.out.println("What colour?");
             System.out.println("[0] Blue");
@@ -228,7 +233,8 @@ public class main extends Application{
                     if(input.contains("DOWN")){
                         centerY--;
                         //gc.drawImage(back,0,0);
-                    }if(input.contains("D")){
+                    }
+                    if(input.contains("D")){
                         centerX=centerX-100;
                         //gc.drawImage(back,0,0);
                     }
@@ -244,9 +250,29 @@ public class main extends Application{
                         centerY=centerY-100;
                         //gc.drawImage(back,0,0);
                     }
+                    if(input.contains("O")){
+                      multiplier=multiplier+1000;
+                    }
+                    if(input.contains("U")){
+                        multiplier=multiplier/2;
+                    }
+                    if(input.contains("P")&&input.contains("S")){
+                      WritableImage wim = new WritableImage(width, height);
+                      canvas.snapshot(null,wim);
+                      try{
+                        ImageIO.write(SwingFXUtils.fromFXImage(wim, null), "png", new File("TestFractal.png"));
+			                  System.out.println("Saved!");
+                      }
+                      catch(Exception ex){
+
+                      }
+                    }
+                    if(input.contains("P")&&input.contains("L")){
+
+                    }
                     for(int i=0;i<frogs.size();i++){
-                        double im=((double)(frogs.get(i).getPositiony()-centerY)/multiplier);
-                        double r=((double)(frogs.get(i).getPositionx()-centerX)/multiplier);
+                        double im=((double)(frogs.get(i).getPositiony()-centerY+mouseY[0])/multiplier);
+                        double r=((double)(frogs.get(i).getPositionx()-centerX+mouseX[0])/multiplier);
 
                         Complex c = new Complex(r,im);
                         Complex z = new Complex(0,0);
