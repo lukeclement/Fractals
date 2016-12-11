@@ -22,14 +22,18 @@ public class main extends Application{
 
     public void start(Stage mainStage){
         Scanner scan=new Scanner(System.in);
-        System.out.println("Which Fractal?");
+        System.out.println("Which Fractal? Or maybe experiment?");
         System.out.println("[0] Dragon");
         System.out.println("[1] Mandelbrot");
+        System.out.println("[2] Modulo times tables");
+
         int opt=scan.nextInt();
         if(opt==0){
             mainStage.setTitle("Dragon");
         }else if(opt==1){
             mainStage.setTitle("Mandelbrot");
+        }else if(opt==2){
+          mainStage.setTitle("Times tables");
         }
         Group root=new Group();
         Scene scene=new Scene(root);
@@ -302,6 +306,66 @@ public class main extends Application{
                 }
             }.start();
             mainStage.show();
+        }
+        if(opt==2){
+          System.out.println("A and D to switch factors, W and S to switch references");
+          System.out.println("Number of reference points?");
+          System.out.print(">>");
+          final int ref=scan.nextInt();
+          System.out.println("Starting factor?");
+          System.out.print(">>");
+          final double factor=scan.nextDouble();
+          Image back=new Image("back.png");
+          new AnimationTimer(){
+            public void delay(long s){
+              long start=System.currentTimeMillis();
+              long end=start+s;
+              while(end>start){
+                start=System.currentTimeMillis();
+              }
+            }
+            public double f=factor;
+            public int r=ref;
+            public void handle(long t){
+              gc.drawImage(back,0,0);
+              gc.setFill(Color.rgb(0,0,0));
+              gc.setLineWidth(1);
+
+              if(input.contains("D")){
+                gc.drawImage(back,0,0);
+                f+=0.1;
+                System.out.println(f);
+                delay(100);
+              }
+              if(input.contains("A")){
+                gc.drawImage(back,0,0);
+                f-=0.1;
+                System.out.println(f);
+                delay(100);
+              }
+              if(input.contains("W")){
+                gc.drawImage(back,0,0);
+                r+=1;
+                System.out.println(r);
+                delay(100);
+              }
+              if(input.contains("S")){
+                gc.drawImage(back,0,0);
+                r-=1;
+                System.out.println(r);
+                delay(100);
+              }
+              double inc=(2*Math.PI)/(double)r;
+              for(int n=0;n<r;n++){
+                gc.fillOval((double)450*Math.sin(n*inc)+width/2,(double)450*Math.cos(n*inc)+height/2,1,1);
+              }
+              for(int fa=0;fa<r;fa++){
+                double gotcha=fa*f;
+                gc.strokeLine((double)450*Math.sin(fa*inc)+width/2,(double)450*Math.cos(fa*inc)+height/2,(double)450*Math.sin(gotcha*inc)+width/2,(double)450*Math.cos(gotcha*inc)+height/2);
+              }
+            }
+          }.start();
+          mainStage.show();
         }
 
     }
